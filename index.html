@@ -10,9 +10,9 @@
 <body>
   <div id="chart" style="text-align:center;"></div>
   <script>
-    var margin = {top: 1, right: 1, bottom: 1, left: 1},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+    var margin = {top: 0, right: 0, bottom: 0, left: 0},
+        width = 1920 - margin.left - margin.right,
+        height = 1080 - margin.top - margin.bottom;
     
     var formatNumber = d3.format(",.0f"),
         format = function(d) { return formatNumber(d) + ""; },
@@ -25,8 +25,8 @@
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
     var sankey = d3.sankey()
-        .nodeWidth(15)
-        .nodePadding(10)
+        .nodeWidth(10)
+        .nodePadding(100)
         .size([width, height]);
     
     var path = sankey.link();
@@ -63,7 +63,7 @@
           .attr("height", function(d) { return d.dy; })
           .attr("width", sankey.nodeWidth())
           .style("fill", function(d) { return d.color = color(d.name.replace(/ .*/, "")); })
-          .style("stroke", function(d) { return d3.rgb(d.color).darker(2); })
+          .style("stroke", function(d) { return d3.rgb(d.color).darker(1); })
         .append("title")
           .text(function(d) { return d.name + "\n" + format(d.value); });
     
